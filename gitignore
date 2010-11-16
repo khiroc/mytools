@@ -1,0 +1,30 @@
+.DS_Store
+Thumbs.db
+# *.zip
+# *.tar.gz
+# *.bz2
+# .hg/
+*.sw[a-z]
+.netrwhist
+*~
+\#*#
+
+# XCode (and ancestors) per-user config (very noisy, and not relevant)
+# *.mode1
+# *.mode1v3
+# *.mode2v3
+# *.perspective
+# *.perspectivev3
+# *.pbxuser
+
+# c/c++/objc
+# *.o
+# *.a
+# a.out
+
+# buildディレクトリ以下は管理しない
+# build/
+
+# tmpディレクトリ以下は管理しないが、tmpディレクトリ自体は管理する
+# tmp/**/*
+
