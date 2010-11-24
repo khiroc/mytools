@@ -376,21 +376,21 @@ set laststatus=2
 
 " fuf.vim(fuzzyfinder.vim)
 " Mru-file and Mru-cmd on
-let g:fuf_modesDisable = []
-let g:fuf_mrufile_maxItem = 500
-let g:fuf_mrucmd_maxItem = 500
+" let g:fuf_modesDisable = []
+" let g:fuf_mrufile_maxItem = 500
+" let g:fuf_mrucmd_maxItem = 500
 " shortcut
-nnoremap [Fuzzy]  <Nop>
-nmap     f [Fuzzy]
-nnoremap <silent> [Fuzzy]f :<C-u>FufFile!<CR>
-nnoremap <silent> [Fuzzy]d :<C-u>FufDir!<CR>
-nnoremap <silent> [Fuzzy]m :<C-u>FufMruFile!<CR>
-nnoremap <silent> [Fuzzy]b :<C-u>FufBuffer!<CR>
-nnoremap <silent> [Fuzzy]c :<C-u>FufMruCmd!<CR>
-nnoremap <silent> [Fuzzy]t :<C-u>FufTag!<CR>
-nnoremap <silent> [Fuzzy]a :<C-u>FufAddBookmark<CR>
-nnoremap <silent> [Fuzzy]' :<C-u>FufBookmark<CR>
-nnoremap <silent> [Fuzzy]r :<C-u>FufRenewCache<CR>
+" nnoremap [Fuzzy]  <Nop>
+" nmap     f [Fuzzy]
+" nnoremap <silent> [Fuzzy]f :<C-u>FufFile!<CR>
+" nnoremap <silent> [Fuzzy]d :<C-u>FufDir!<CR>
+" nnoremap <silent> [Fuzzy]m :<C-u>FufMruFile!<CR>
+" nnoremap <silent> [Fuzzy]b :<C-u>FufBuffer!<CR>
+" nnoremap <silent> [Fuzzy]c :<C-u>FufMruCmd!<CR>
+" nnoremap <silent> [Fuzzy]t :<C-u>FufTag!<CR>
+" nnoremap <silent> [Fuzzy]a :<C-u>FufAddBookmark<CR>
+" nnoremap <silent> [Fuzzy]' :<C-u>FufBookmark<CR>
+" nnoremap <silent> [Fuzzy]r :<C-u>FufRenewCache<CR>
 " ctl+Enter vsp
 " let g:FufOptionVsplit = '<C-Enter>'
 "ctl+Enter tabnew
@@ -518,12 +518,13 @@ endif
 
 " unite.vim
 " The prefix key.
-" nnoremap    [unite]   <Nop>
-" nmap    f [unite]
-" nnoremap <silent> [unite]f  :<C-u>UniteWithCurrentDir -buffer-name=files buffer file_mru bookmark file<CR>
-" nnoremap <silent> [unite]b  :<C-u>UniteWithBufferDir -buffer-name=files -prompt=%\  buffer file_mru bookmark file<CR>
-" nnoremap <silent> [unite]r  :<C-u>Unite -buffer-name=register register<CR>
-" nnoremap <silent> [unite]w  :<C-u>UniteWithCursorWord -buffer-name=register buffer file_mru bookmark file<CR>
+nnoremap    [unite]   <Nop>
+nmap    f [unite]
+nnoremap <silent> [unite]f  :<C-u>UniteWithCurrentDir -buffer-name=files buffer file_mru bookmark file<CR>
+nnoremap <silent> [unite]b  :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+nnoremap <silent> [unite]m  :<C-u>Unite -buffer-name=buffer file_mru bookmark file<CR>
+nnoremap <silent> [unite]r  :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> [unite]w  :<C-u>UniteWithCursorWord -buffer-name=register buffer file_mru bookmark file<CR>
 " nnoremap <silent> [unite]o  :<C-u>Unite outline<CR>
 " nnoremap <silent> [Space]b  :<C-u>UniteBookmarkAdd<CR>
 " nnoremap  [unite]f  :<C-u>Unite source<CR>
