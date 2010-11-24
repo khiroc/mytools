@@ -522,10 +522,10 @@ nnoremap    [unite]   <Nop>
 nmap    f [unite]
 nnoremap <silent> [unite]f  :<C-u>UniteWithCurrentDir -buffer-name=files buffer file_mru bookmark file<CR>
 nnoremap <silent> [unite]b  :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
-nnoremap <silent> [unite]m  :<C-u>Unite -buffer-name=buffer file_mru bookmark file<CR>
+nnoremap <silent> [unite]m  :<C-u>Unite -buffer-name=files file_mru bookmark file<CR>
 nnoremap <silent> [unite]r  :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> [unite]w  :<C-u>UniteWithCursorWord -buffer-name=register buffer file_mru bookmark file<CR>
-" nnoremap <silent> [unite]o  :<C-u>Unite outline<CR>
+nnoremap <silent> [unite]o  :<C-u>Unite outline<CR>
 " nnoremap <silent> [Space]b  :<C-u>UniteBookmarkAdd<CR>
 " nnoremap  [unite]f  :<C-u>Unite source<CR>
 autocmd FileType unite call s:unite_my_settings()
