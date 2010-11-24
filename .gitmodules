@@ -55,3 +55,6 @@
 [submodule "dot.vim/bundle/unite-outline"]
 	path = dot.vim/bundle/unite-outline
 	url = https://github.com/h1mesuke/unite-outline.git
+[submodule "dot.vim/bundle/git-vim"]
+	path = dot.vim/bundle/git-vim
+	url = https://github.com/motemen/git-vim.git

@@ -1,6 +1,3 @@
-# zshcallがあれば読み込む
-# [ -f ~/.zshrcall ] && source ~/.zshrcall
-
 export LANG=ja_JP.UTF-8
 
 # プロンプト、表示

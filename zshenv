@@ -12,7 +12,7 @@ export PATH=/usr/local/bin:${PATH}
 # export MANPATH=/opt/local/man:${MANPATH}
 
 # git-core とりあえず
-export PATH=$PATH:/usr/local/Cellar/git/1.7.3.2/libexec/git-core
+# export PATH=$PATH:/usr/local/Cellar/git/1.7.3.2/libexec/git-core
 
 # ===============[ tomcat ]=================
 export CATALINA_HOME=/usr/local/tomcat

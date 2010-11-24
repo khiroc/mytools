@@ -1,5 +1,3 @@
-#[ -f /Users/hiroc/.zprofileall ] && source /Users/hiroc/.zprofileall
-
 export DISPLAY=":0.0"
 export Lang=ja_JP.UTF-8
 
