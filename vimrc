@@ -1,4 +1,4 @@
-" my vimrc  Last Change: 24-Nov-2010.
+" my vimrc  Last Change: 23-Dec-2010.
 
 :if version < 701
    :finish
@@ -67,9 +67,10 @@ set completeopt=menuone,preview
 
 " swap file ~/tmp スワップの置き場所
 set directory-=.
+" set directory=~/vim/swap
 
-" always crrent directory 開いている場所をcrrent
-au BufEnter * execute ":lcd " . expand("%:p:h")
+" always current directory 開いている場所をcurrent
+" au BufEnter * execute ":lcd " . expand("%:p:h")
 
 " netrw config ディレクトリブラウザの設定
 let g:netrw_liststyle = 1
@@ -109,8 +110,9 @@ endif
 
 " colorscheme torte カラーテーマ
 " colorscheme desert
-colorscheme koehler
+" colorscheme koehler
 " colorscheme wombat
+colorscheme lucius
 
 " syntax_on 構文ハイライト
 syntax on
@@ -121,15 +123,17 @@ set number
 " コマンドを画面の最下行に表示
 set showcmd
 
-" statusline ステータスライン(buftabs.vimに移動)
+" statusline ステータスライン(buftabs.vimも参照)
 " ステータスラインを常に表示
-" set laststatus=2
+set laststatus=2
 " ステータスラインの表示内容
-" set statusline=%<%F\%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}
-" set statusline+=%=
+set statusline=%<%F\%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}
+set statusline+=%=
 " set statusline+=[ci=%c]
 " set statusline+=[L=%l/%L]
+set statusline+=[%04l,%04v]
 " set statusline+=[%p%%]
+set statusline+=[%02p%%]
 
 " display tab & end of line タブ文字行末表示
 set list
@@ -190,8 +194,10 @@ endif
 " graphic move && center
 vmap j gjzz
 vmap k gkzz
+vmap G Gzz
 nmap j gjzz
 nmap k gkzz
+nmap G Gzz
 
 " search etc keep center 真ん中をキープ
 nmap n nzz
@@ -367,12 +373,12 @@ let g:Align_xstrlen=3
 " バッファタブにパスを省略してファイル名のみ表示する
 let g:buftabs_only_basename = 1
 " バッファタブをステータスライン内に表示する
-let g:buftabs_in_statusline = 1
+" let g:buftabs_in_statusline = 1
 " アクティブなバッファをハイライト表示する
 " let g:buftabs_active_highlight_group="Visual"
 " statusline ステータスライン
-set statusline=%{g:buftabs_list}%=\[%<%F]\%m%r%h%w[%{(&fenc!=''?&fenc:&enc)}/%{&ff}]\%y\[%04l,%04v][%02p%%]
-set laststatus=2
+" set statusline=%{g:buftabs_list}%=\[%<%F]\%m%r%h%w[%{(&fenc!=''?&fenc:&enc)}/%{&ff}]\%y\[%04l,%04v][%02p%%]
+" set laststatus=2
 
 " fuf.vim(fuzzyfinder.vim)
 " Mru-file and Mru-cmd on
@@ -431,8 +437,10 @@ nnoremap <Space>gC :<C-u>GitCommit -a --amend<Enter>
 " neocomplcache.vim
 " Use neocomplcache. neocomplcacheを開始時から有効にする
 let g:neocomplcache_enable_at_startup = 1
+" popup max list ポップアップで表示される候補の最大数
+let g:neocomplcache_max_list = 50
 " hoge -> hoge,Hoge || Hoge -> Hoge
-let g:NeoComplCache_SmartCase = 1
+let g:neocomplcache_enable_smart_case = 1
 " Use previous keyword completion.(前の単語を考慮して候補の並びを決定する)
 let g:NeoComplCache_PreviousKeywordCompletion = 1
 " Use tags auto update.
@@ -440,23 +448,29 @@ let g:NeoComplCache_TagsAutoUpdate = 1
 " Use preview window.
 let g:NeoComplCache_EnableInfo = 1
 " Use camel case completion. (AE -> ArgumentsException)
-let g:NeoComplCache_EnableCamelCaseCompletion = 1
+" let g:neocomplcache_enable_camel_case_completion = 1
 " Use underbar completion. (p_h -> public_html)
-let g:NeoComplCache_EnableUnderbarCompletion = 1
+" let g:neocomplcache_enable_underbar_completion = 1
 " Set minimum syntax keyword length.
-let g:NeoComplCache_MinSyntaxLength = 3
+let g:neocomplcache_min_syntax_length = 3
+" quick select '-'を入力すると英数字で候補選択
+" let g:neocomplcache_enable_quick_match = 1
 " Set skip input time.
 let g:NeoComplCache_SkipInputTime = '0.2'
-" alphabeticalorder (候補の順番をアルファベット順にする)
-" let g:NeoComplCache_AlphabeticalOrder = 1
 " Set manual completion length.
-let g:NeoComplCache_ManualCompletionStartLength = 1
+let g:neocomplcache_manual_completion_start_length = 1
+" 自動的に一番上の候補を選択する
+" let g:neocomplcache_enable_auto_select = 1
 " C-jでneocomplcache補完
 " inoremap <expr><C-j>  pumvisible() ? "\<C-j>" : "\<C-x>\<C-u>\<C-p>"
 " snippets key-mappings
 imap <silent><C-l>  <Plug>(neocomplcache_snippets_expand)
 smap <silent><C-l>  <Plug>(neocomplcache_snippets_expand)
-
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
 " NERD_commenter.vim
 map co <plug>NERDCommenterToggle
@@ -536,7 +550,7 @@ nnoremap    [unite]   <Nop>
 nmap    f [unite]
 nnoremap <silent> [unite]f  :<C-u>UniteWithCurrentDir -buffer-name=files buffer file_mru bookmark file<CR>
 nnoremap <silent> [unite]b  :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
-nnoremap <silent> [unite]m  :<C-u>Unite -buffer-name=files file_mru bookmark file<CR>
+nnoremap <silent> [unite]m  :<C-u>Unite -buffer-name=files buffer file_mru bookmark file<CR>
 nnoremap <silent> [unite]r  :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> [unite]w  :<C-u>UniteWithCursorWord -buffer-name=register buffer file_mru bookmark file<CR>
 nnoremap <silent> [unite]o  :<C-u>Unite outline<CR>
@@ -578,6 +592,16 @@ cabbrev vf VimFiler
 " 非同期実行
 " let g:VimShell_EnableInteractive = 1
 let g:vimshell_enable_smart_case = 1
+" ,is: シェルを起動
+" nnoremap <silent> ,is :VimShell<CR>
+" ,ipy: pythonを非同期で起動
+" nnoremap <silent> ,ipy :VimShellInteractive python<CR>
+" ,irb: irbを非同期で起動
+" nnoremap <silent> ,irb :VimShellInteractive irb<CR>
+" 選択中に,ss: 非同期で開いたインタプリタに選択行を評価させる
+" vmap <silent> ,ss :VimShellSendString<CR>
+" ,ss: 非同期で開いたインタプリタに現在の行を評価させる
+" nnoremap <silent> ,ss <S-v>:VimShellSendString<CR>
 
 " writebackup.vim
 " nnoremap <Space>b :<C-u>WriteBackup<CR>
