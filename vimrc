@@ -1,4 +1,4 @@
-" my vimrc  Last Change: 23-Dec-2010.
+" my vimrc  Last Change: 02-Mar-2011.
 
 :if version < 701
    :finish
@@ -276,8 +276,8 @@ noremap : ;
 inoremap [ []<Left>
 inoremap ( ()<Left>
 inoremap { {}<Left>
-inoremap '' ''<Left>
-inoremap "" ""<Left>
+inoremap ' ''<Left>
+inoremap " ""<Left>
 
 " syntaxファイルによる補完
 " autocmd FileType *
@@ -416,6 +416,11 @@ nnoremap <Space>gc :<C-u>GitCommit -a<Enter>
 nnoremap <Space>gC :<C-u>GitCommit -a --amend<Enter>
 " nnoremap <Space>gp :<C-u>Git push
 
+" Gundo.vim
+" let g:gundo_width = 60
+" let g:gundo_preview_height = 40
+" let g:gundo_right = 1
+
 " Ku.vim
 " enter mapping overwrite
 " autocmd MyAutoCmd User plugin-ku-buffer-initialized call ku#default_key_mappings(1)
@@ -503,8 +508,10 @@ inoremap <expr> = smartchr#loop(' = ', ' == ', ' === ', '=')
 inoremap <expr> < smartchr#loop('<', ' < ', ' <= ')
 inoremap <expr> > smartchr#loop('>', ' > ', ' >= ')
 inoremap <expr> & smartchr#loop('&', ' && ')
-" inoremap <expr> <Bar> smartchr#loop('<Bar>', ' <Bar><Bar> ')
+inoremap <expr> <Bar> smartchr#loop('<Bar>', ' <Bar><Bar> ')
 inoremap <expr> , smartchr#one_of(', ', ',', '<><Left>')
+" inoremap <buffer><expr> + smartchr#one_of(' + ', '++', '+')
+" inoremap <buffer><expr> - smartchr#one_of(' - ', '--', '-')
 
 " smartword.vim
 map w  <Plug>(smartword-w)zz

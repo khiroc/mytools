@@ -142,54 +142,54 @@ function cd(){
 
 
 # screenのときに自動命名
-preexec () {
-    if [ $TERM = "screen" ]; then
-        1="$1 " # deprecated.
-        echo -ne "\ek${${(s: :)1}[0]}\e\\"
-    fi
-  }
+# preexec () {
+    # if [ $TERM = "screen" ]; then
+        # 1="$1 " # deprecated.
+        # echo -ne "\ek${${(s: :)1}[0]}\e\\"
+    # fi
+  # }
 
-function ssh_screen(){
- eval server=\${$#}
- screen -t $server ssh "$@"
-}
-if [ x$TERM = xscreen ]; then
-  alias ssh=ssh_screen
-fi
+# function ssh_screen(){
+ # eval server=\${$#}
+ # screen -t $server ssh "$@"
+# }
+# if [ x$TERM = xscreen ]; then
+  # alias ssh=ssh_screen
+# fi
 
 # screenのセッション保存先
-export SCREENDIR=~/tmp/screen/
+# export SCREENDIR=~/tmp/screen/
 
 
 # gitのブランチ名を右側に表示
 # ${fg[...]} や $reset_color をロード
-autoload -U colors; colors
+# autoload -U colors; colors
 
-function rprompt-git-current-branch {
-        local name st color
-        name=`git branch 2> /dev/null | grep '^\*' | cut -b 3-`
-        if [[ -z $name ]]; then
-                return
-        fi
-        st=`git status`
-        if [[ -n `echo "$st" | grep "^nothing to"` ]]; then
-                color=${fg[green]}
-        elif [[ -n `echo "$st" | grep "^nothing added"` ]]; then
-                color=${fg[yellow]}
-        elif [[ -n `echo "$st" | grep "^# Untracked"` ]]; then
-                color=${fg_bold[red]}
-        else
-                color=${fg[red]}
-        fi
+# function rprompt-git-current-branch {
+        # local name st color
+        # name=`git branch 2> /dev/null | grep '^\*' | cut -b 3-`
+        # if [[ -z $name ]]; then
+                # return
+        # fi
+        # st=`git status`
+        # if [[ -n `echo "$st" | grep "^nothing to"` ]]; then
+                # color=${fg[green]}
+        # elif [[ -n `echo "$st" | grep "^nothing added"` ]]; then
+                # color=${fg[yellow]}
+        # elif [[ -n `echo "$st" | grep "^# Untracked"` ]]; then
+                # color=${fg_bold[red]}
+        # else
+                # color=${fg[red]}
+        # fi
 
-        # %{...%} は囲まれた文字列がエスケープシーケンスであることを明示する
-        # これをしないと右プロンプトの位置がずれる
-        echo "%{$color%}$name%{$reset_color%} "
-}
+        # # %{...%} は囲まれた文字列がエスケープシーケンスであることを明示する
+        # # これをしないと右プロンプトの位置がずれる
+        # echo "%{$color%}$name%{$reset_color%} "
+# }
 
-# プロンプトが表示されるたびにプロンプト文字列を評価、置換する
-setopt prompt_subst
-RPROMPT='[`rprompt-git-current-branch`%~]'
+# # プロンプトが表示されるたびにプロンプト文字列を評価、置換する
+# setopt prompt_subst
+# RPROMPT='[`rprompt-git-current-branch`%~]'
 
 # バックスラッシュで~/
 expand-to-home-or-insert () {

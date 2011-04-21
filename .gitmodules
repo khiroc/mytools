@@ -58,3 +58,12 @@
 [submodule "dot.vim/bundle/git-vim"]
 	path = dot.vim/bundle/git-vim
 	url = https://github.com/motemen/git-vim.git
+[submodule "dot.vim/bundle/gundo"]
+	path = dot.vim/bundle/gundo
+	url = http://github.com/sjl/gundo.vim.git
+[submodule "dot.vim/bundle/neco-ghc"]
+	path = dot.vim/bundle/neco-ghc
+	url = http://github.com/ujihisa/neco-ghc
+[submodule "dot.vim/bundle/vim-rails"]
+	path = dot.vim/bundle/vim-rails
+	url = https://github.com/tpope/vim-rails.git
