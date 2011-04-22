@@ -43,9 +43,6 @@
 [submodule "dot.vim/bundle/unite-help"]
 	path = dot.vim/bundle/unite-help
 	url = https://github.com/tsukkee/unite-help.git
-[submodule "dot.vim/bundle/vimshell"]
-	path = dot.vim/bundle/vimshell
-	url = https://github.com/Shougo/vimshell.git
 [submodule "dot.vim/bundle/vimproc"]
 	path = dot.vim/bundle/vimproc
 	url = https://github.com/Shougo/vimproc.git
@@ -55,9 +52,6 @@
 [submodule "dot.vim/bundle/unite-outline"]
 	path = dot.vim/bundle/unite-outline
 	url = https://github.com/h1mesuke/unite-outline.git
-[submodule "dot.vim/bundle/git-vim"]
-	path = dot.vim/bundle/git-vim
-	url = https://github.com/motemen/git-vim.git
 [submodule "dot.vim/bundle/gundo"]
 	path = dot.vim/bundle/gundo
 	url = http://github.com/sjl/gundo.vim.git
@@ -67,3 +61,9 @@
 [submodule "dot.vim/bundle/vim-rails"]
 	path = dot.vim/bundle/vim-rails
 	url = https://github.com/tpope/vim-rails.git
+[submodule "dot.vim/bundle/vim-fugitive"]
+	path = dot.vim/bundle/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule "dot.vim/bundle/git-vim"]
+	path = dot.vim/bundle/git-vim
+	url = https://github.com/Shougo/git-vim.git

@@ -1,4 +1,4 @@
-" my vimrc  Last Change: 02-Mar-2011.
+" my vimrc  Last Change: 22-Apr-2011.
 
 :if version < 701
    :finish
@@ -70,7 +70,7 @@ set directory-=.
 " set directory=~/vim/swap
 
 " always current directory 開いている場所をcurrent
-" au BufEnter * execute ":lcd " . expand("%:p:h")
+au BufEnter * execute ":lcd " . expand("%:p:h")
 
 " netrw config ディレクトリブラウザの設定
 let g:netrw_liststyle = 1
@@ -414,7 +414,7 @@ nnoremap <Space>ga :<C-u>GitAdd<Enter>
 nnoremap <Space>gA :<C-u>GitAdd <cfile><Enter>
 nnoremap <Space>gc :<C-u>GitCommit -a<Enter>
 nnoremap <Space>gC :<C-u>GitCommit -a --amend<Enter>
-" nnoremap <Space>gp :<C-u>Git push
+nnoremap <Space>gp :<C-u>Git push
 
 " Gundo.vim
 " let g:gundo_width = 60
@@ -555,7 +555,7 @@ endif
 " The prefix key.
 nnoremap    [unite]   <Nop>
 nmap    f [unite]
-nnoremap <silent> [unite]f  :<C-u>UniteWithCurrentDir -buffer-name=files buffer file_mru bookmark file<CR>
+" nnoremap <silent> [unite]f  :<C-u>UniteWithCurrentDir -buffer-name=files buffer file_mru bookmark file<CR>
 nnoremap <silent> [unite]b  :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
 nnoremap <silent> [unite]m  :<C-u>Unite -buffer-name=files buffer file_mru bookmark file<CR>
 nnoremap <silent> [unite]r  :<C-u>Unite -buffer-name=register register<CR>
@@ -591,6 +591,8 @@ let g:vimball_home = $HOME . '/.vim/bundle/vimballplugin/'
 " vimfiler.vim
 " instead of netrw
 let g:vimfiler_as_default_explorer = 1
+" The prefix key.
+nnoremap <silent> [unite]f  :<C-u>VimFiler<CR>
 " コマンドラインでの短縮入力
 cabbrev vf VimFiler
 
