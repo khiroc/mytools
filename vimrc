@@ -1,4 +1,4 @@
-" my vimrc  Last Change: 22-Apr-2011.
+" my vimrc  Last Change: 12-May-2011.
 
 :if version < 701
    :finish
@@ -108,11 +108,13 @@ endif
 " ---------------------------------------------------------------------
 " display configure 表示設定
 
-" colorscheme torte カラーテーマ
+" colorscheme カラーテーマ
 " colorscheme desert
 " colorscheme koehler
 " colorscheme wombat
-colorscheme lucius
+" colorscheme lucius
+" colorscheme elflord
+colorscheme nevfn
 
 " syntax_on 構文ハイライト
 syntax on
@@ -510,6 +512,8 @@ inoremap <expr> > smartchr#loop('>', ' > ', ' >= ')
 inoremap <expr> & smartchr#loop('&', ' && ')
 inoremap <expr> <Bar> smartchr#loop('<Bar>', ' <Bar><Bar> ')
 inoremap <expr> , smartchr#one_of(', ', ',', '<><Left>')
+inoremap <buffer><expr> + smartchr#one_of('+', ' + ', '++')
+inoremap <buffer><expr> - smartchr#one_of('-', ' - ', '--')
 " inoremap <buffer><expr> + smartchr#one_of(' + ', '++', '+')
 " inoremap <buffer><expr> - smartchr#one_of(' - ', '--', '-')
 
@@ -600,7 +604,7 @@ cabbrev vf VimFiler
 " nnoremap <Space>v :<C-u>VimShell<CR>
 " 非同期実行
 " let g:VimShell_EnableInteractive = 1
-let g:vimshell_enable_smart_case = 1
+" let g:vimshell_enable_smart_case = 1
 " ,is: シェルを起動
 " nnoremap <silent> ,is :VimShell<CR>
 " ,ipy: pythonを非同期で起動

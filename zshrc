@@ -216,9 +216,9 @@ alias ll="ls -lhAGFTv | less"
 alias c="cd"
 
 alias cp="cp -ir"
-alias cpf="/bin/cp -firv"
+alias cpf="/bin/cp -frv"
 alias rm="rm -ir"
-alias rmf="/bin/rm -firv"
+alias rmf="/bin/rm -frv"
 alias mv="mv -i"
 alias t="tar zxvf"
 

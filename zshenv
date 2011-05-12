@@ -1,18 +1,22 @@
-# my zshenv Last Change: 21-Nov-2010.
+# my zshenv Last Change: 28-Apr-2011.
 
 # プロファイルがあれば読み込む
 # if [ -f /etc/profile ]; then
 	# . /etc/profile
 # fi
 
+# 重複パスを削除
+typeset -U PATH
+
+path=(/usr/*/bin(N-/) /usr/local/*/bin(N-/) /var/*/bin(N-/) $PATH)
+
 # export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export PATH=/usr/local/bin:${PATH}
+
 
 # MacPorts manファイル
 # export MANPATH=/opt/local/man:${MANPATH}
 
-# git-core とりあえず
-# export PATH=$PATH:/usr/local/Cellar/git/1.7.3.2/libexec/git-core
 
 # ===============[ tomcat ]=================
 export CATALINA_HOME=/usr/local/tomcat
