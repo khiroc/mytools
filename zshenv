@@ -1,4 +1,4 @@
-# my zshenv Last Change: 28-Apr-2011.
+# my zshenv Last Change: 13-May-2011.
 
 # プロファイルがあれば読み込む
 # if [ -f /etc/profile ]; then
@@ -22,12 +22,12 @@ export PATH=/usr/local/bin:${PATH}
 export CATALINA_HOME=/usr/local/tomcat
 export CATALINA_BASE=/usr/local/tomcat
 export CATALINA_OPTS="-server -Xmx256M -Xms128M -Xss256k"
-export PATH=$PATH:$CATALINA_HOME/bin
+export PATH=$CATALINA_HOME/bin:$PATH
 
 # ===============[ pgsql ]=================
 export POSTGRES_HOME=/usr/local/pgsql
 export PGDATA=$POSTGRES_HOME/data
-export PATH=$PATH:$POSTGRES_HOME/bin
+export PATH=$POSTGRES_HOME/bin:$PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$POSTGRES_HOME
 export PGCLIENTENCODING=UTF8
 

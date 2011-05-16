@@ -1,4 +1,4 @@
-" my vimrc  Last Change: 12-May-2011.
+" my vimrc  Last Change: 16-May-2011.
 
 :if version < 701
    :finish
@@ -40,6 +40,7 @@ set history=500
 
 
 " auto indent オートインデントの設定
+set autoindent
 set smartindent
 " set cindent
 " set cinoptions=:0
@@ -485,6 +486,20 @@ map cs <plug>NERDCommenterSexy
 map ca <plug>NERDCommenteryAppend
 map cu <plug>NERDCommenterUncomment
 let NERDSpaceDelims = 1
+
+" QFixHowm
+"qfixappにruntimepathを通す
+set runtimepath+=~/mytools/dot.vim/bundle/qfixapp
+"キーマップリーダー
+let QFixHowm_Key = 'g'
+"howm_dirはファイルを保存したいディレクトリを設定。
+let howm_dir             = '~/howm'
+let howm_filename        = '%Y/%m/%Y-%m-%d-%H%M%S.howm'
+let howm_fileencoding    = 'utf-8'
+let howm_fileformat      = 'unix'
+" grepの設定
+let mygrepprg = 'grep'
+let MyGrep_ShellEncoding = 'utf-8'
 
 " quickrun.vim
 silent! nmap <unique> <Space>r <Plug>(Quickrun)
