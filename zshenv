@@ -1,4 +1,4 @@
-# my zshenv Last Change: 13-May-2011.
+# my zshenv Last Change: 13-Jun-2011.
 
 # プロファイルがあれば読み込む
 # if [ -f /etc/profile ]; then
@@ -8,11 +8,12 @@
 # 重複パスを削除
 typeset -U PATH
 
-path=(/usr/*/bin(N-/) /usr/local/*/bin(N-/) /var/*/bin(N-/) $PATH)
+path=(/usr/*/(bin|sbin)(N-/) /usr/local/*/(bin|sbin)(N-/) /var/*/(bin|sbin)(N-/) $PATH)
 
 # export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-export PATH=/usr/local/bin:${PATH}
+path=(/usr/local/(bin|sbin) $PATH)
 
+fpath=($HOME/.zsh/functions/ $fpath)
 
 # MacPorts manファイル
 # export MANPATH=/opt/local/man:${MANPATH}

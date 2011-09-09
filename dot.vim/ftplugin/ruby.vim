@@ -12,8 +12,10 @@ setlocal softtabstop=2
 " nnoremap <buffer> <silent> <C-K> :Refe<CR>
 
 "smartchr.vim
-inoremap <expr> < smartchr#loop('<', ' < ', ' <= ', ' << ')
+" inoremap <expr> < smartchr#loop('<', ' < ', ' <= ', ' << ')
 " inoremap <expr> - smartchr#loop('-', ' => ')
-inoremap <expr> > smartchr#loop('>', ' > ', ' => ', ' >= ')
+" inoremap <expr> > smartchr#loop('>', ' > ', ' => ', ' >= ')
+inoremap <expr> , smartchr#loop(', ', ' < ', ' << ', ' <= ')
+inoremap <expr> . smartchr#loop('.', '>', ' > ', ' => ', ' >= ')
 inoremap <expr> ~ smartchr#loop('~', ' =~ ')
 inoremap <expr> % smartchr#loop('%', '%= ')

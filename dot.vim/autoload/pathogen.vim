@@ -1,1 +1,0 @@
-/Users/hiroc/.vim/bundle/pathogen/autoload/pathogen.vim

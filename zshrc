@@ -206,6 +206,21 @@ bindkey "\\"  expand-to-home-or-insert
 # 辞書.app
 dict () { open dict:///"$@" ; }
 
+# 大学でのproxy
+cist_proxy () {
+    # proxy
+    export http_proxy=http://proxy.mc.chitose.ac.jp:8080
+    export HTTP_PROXY=http://proxy.mc.chitose.ac.jp:8080
+    export ftp_proxy=http://proxy.mc.chitose.ac.jp:8080
+    export FTP_PROXY=http://proxy.mc.chitose.ac.jp:8080
+    export https_proxy=http://proxy.mc.chitose.ac.jp:8080
+    export HTTPS_PROXY=http://proxy.mc.chitose.ac.jp:8080
+    export ALL_PROXY=$http_proxy
+    echo "http_proxy = "$http_proxy
+    echo "ftp_proxy = "$ftp_proxy
+    echo "set cist proxy"
+}
+
 
 ###alias###
 alias l="ls -GF"
@@ -248,4 +263,5 @@ alias -g .....='../../../..'
 alias -g G='| grep'
 alias -g H=' --help | less'
 alias -g L='| less'
+alias -g VL='| vless'
 alias -g T='| tail'

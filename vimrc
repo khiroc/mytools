@@ -1,4 +1,4 @@
-" my vimrc  Last Change: 16-May-2011.
+" my vimrc  Last Change: 09-Sep-2011.
 
 :if version < 701
    :finish
@@ -11,9 +11,55 @@ augroup END
 " autocmd!
 
 " pathogen.vim
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+" call pathogen#runtime_append_all_bundles()
+" call pathogen#helptags()
 
+" vundle
+set nocompatible
+filetype off
+set rtp+=~/mytools/dot.vim/vundle.git
+call vundle#rc()
+
+" My Bundles here:
+"
+" original repos on github
+Bundle 'Shougo/unite.vim'
+Bundle 'Shougo/neocomplcache'
+Bundle 'ujihisa/quickrun'
+Bundle 'kana/vim-smartchr'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+Bundle 'Shougo/vimfiler'
+Bundle 'thinca/vim-ref'
+Bundle 'kana/vim-smartword'
+Bundle 'mattn/zencoding-vim'
+Bundle 'tsukkee/unite-help'
+Bundle 'Shougo/vimproc'
+Bundle 'kana/vim-smartword'
+Bundle 'h1mesuke/unite-outline'
+Bundle 'sjl/gundo.vim'
+Bundle 'ujihisa/neco-ghc'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-fugitive'
+Bundle 'Shougo/git-vim'
+Bundle 'tyru/gittools'
+Bundle 'tyru/open-browser.vim'
+Bundle 'vimpr/vimperator-plugins'
+Bundle 'fuenor/qfixhowm'
+
+" vim-scripts repos
+
+
+filetype plugin indent on     " required!
+" Brief help
+" :BundleList          - list configured bundles
+" :BundleInstall(!)    - install(update) bundles
+" :BundleSearch(!) foo - search(or refresh cache first) for foo
+" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+"
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Bundle command are not allowed..
 
 
 " ---------------------------------------------------------------------
@@ -28,6 +74,8 @@ set nobackup
 " ファイルの上書きの前にバックアップを作る
 " (ただし、backupがオフである場合、バックアップは上書き成功後に削除される)
 set writebackup
+" 特定の場所ではバックアップしない
+set backupskip=/tmp/*,/private/tmp/*
 
 " buffer adv バッファを保存せずに切り替え
 set hidden
@@ -120,6 +168,9 @@ colorscheme nevfn
 " syntax_on 構文ハイライト
 syntax on
 
+" indent_on ファイル形式別のインデント
+filetype indent on
+
 " 行番号を表示
 set number
 
@@ -183,7 +234,7 @@ command! Big wincmd _ | wincmd |
 " nnoremap <C-h> :<C-u>help<Space>
 " nnoremap <Space>h :<C-u>help<space>
 " open mytips
-nnoremap <Space>t :<C-u>help<space>mytips.txt<CR>
+" nnoremap <Space>t :<C-u>help<space>mytips.txt<CR>
 
 " open vimrc
 nnoremap <Space>, :<C-u>edit $MYVIMRC<CR>
@@ -279,6 +330,7 @@ noremap : ;
 inoremap [ []<Left>
 inoremap ( ()<Left>
 inoremap { {}<Left>
+inoremap < <><Left>
 inoremap ' ''<Left>
 inoremap " ""<Left>
 
@@ -321,7 +373,7 @@ command! -bang -nargs=? Euc edit<bang> ++enc=euc-jp <args>
 " files open shortcut ディレクトリ以下を再帰的にargs
 nnoremap <Space>a :<C-u>args **/*.*
 
-" vimdiff diff略語
+" vimdiff diff 略語・短縮
 cabbrev dt diffthis
 cabbrev ds diffsplit
 cabbrev do diffoff
@@ -358,6 +410,8 @@ autocmd MyAutoCmd BufWritePost $Myfortune_path nested !/usr/local/bin/strfile $M
 " tips helptags autoupdate
 let $Mydoc_path = $HOME . '/.vim/doc/'
 autocmd MyAutoCmd BufWritePost $Mydoc_path . '/mytips.txt' nested helptags $Mydoc_path
+" atode
+":helptags ~/.vim/vundle.git/doc
 
 
 " ---------------------------------------------------------------------
@@ -371,6 +425,9 @@ autocmd MyAutoCmd BufWritePost $Mydoc_path . '/mytips.txt' nested helptags $Mydo
 
 " align.vim
 let g:Align_xstrlen=3
+
+" BufOnly.vim
+cabbrev bo BOnly
 
 " buftabs.vim
 " バッファタブにパスを省略してファイル名のみ表示する
@@ -489,17 +546,84 @@ let NERDSpaceDelims = 1
 
 " QFixHowm
 "qfixappにruntimepathを通す
-set runtimepath+=~/mytools/dot.vim/bundle/qfixapp
+if has('win32') || has('win64')
+  set runtimepath+=c:/temp/qfixapp
+else
+  set runtimepath+=~/mytools/dot.vim/bundle/qfixapp
+endif
+"howm_dirはファイルを保存したいディレクトリを設定。
+if has('win32') || has('win64')
+  let howm_dir             = 'c:/howm'
+  let howm_filename        = '%Y/%m/%Y-%m-%d-%H%M%S.howm'
+  " let howm_filename        = '%Y/%m/%Y-%m-%d-000000.howm'
+  let howm_fileencoding    = 'utf-8'
+  let howm_fileformat      = 'unix'
+else
+  let howm_dir             = '~/howm'
+  let howm_filename        = '%Y/%m/%Y-%m-%d-%H%M%S.howm'
+  " let howm_filename        = '%Y/%m/%Y-%m-%d-000000.howm'
+  let howm_fileencoding    = 'utf-8'
+  let howm_fileformat      = 'unix'
+endif
+"クイックメモのファイル名(月ごと)
+" let QFixHowm_QuickMemoFile = 'Qmem-00-%Y-%m-00-000000.howm'
+"日記のファイル名
+let QFixHowm_DiaryFile = 'diary/%Y/%m/%Y-%m-%d-000000.howm'
+" grepの設定
+if has('win32') || has('win64')
+  let $CYGWIN='nodosfilewarning'
+  let mygrepprg = $MY_VIMRUNTIME.'/bin/grep'
+else
+  let mygrepprg = 'grep'
+  let MyGrep_ShellEncoding = 'utf-8'
+endif
 "キーマップリーダー
 let QFixHowm_Key = 'g'
-"howm_dirはファイルを保存したいディレクトリを設定。
-let howm_dir             = '~/howm'
-let howm_filename        = '%Y/%m/%Y-%m-%d-%H%M%S.howm'
-let howm_fileencoding    = 'utf-8'
-let howm_fileformat      = 'unix'
-" grepの設定
-let mygrepprg = 'grep'
-let MyGrep_ShellEncoding = 'utf-8'
+"Howmコマンドの2ストローク目キーマップ
+let QFixHowm_KeyB = ','
+" カーソル位置のエントリ時刻のみ更新
+let QFixHowm_RecentMode = 2
+"howmタイムスタンプソートを使用する
+let QFixHowm_HowmTimeStampSort = 1
+" 最近更新ファイル検索日数
+let QFixHowm_RecentDays = 7
+" MRU表示数
+let QFixHowm_MruFileMax = 100
+" MRU内部のエントリ最大保持数
+let QFixMRU_EntryMax    = 600
+" MRUは howm_dir内のファイルのみ表示
+let QFixHowm_MruMode = 'directory'
+" MRUに登録しないファイル名(正規表現)
+let QFixMRU_IgnoreFile   = '**/diary/*.*'
+"オートリンク上のタグジャンプを使用する
+" let QFixHowm_UseAutoLinkTags = 1
+"Quickfixウィンドウから開いた後ウィンドウを閉じる
+let QFix_CloseOnJump = 1
+"Quickfixウィンドウの高さ
+let QFix_Height = 5
+" 垂直分割
+let QFix_CopenCmd = 'vertical topleft'
+let QFix_PreviewHeight = 16
+let QFix_Width = 86
+" カテゴリタグ
+nnoremap <silent> g,ht :<C-u>call QFixHowmCreateNewFileWithTag('[]')<CR>
+let QFixHowm_UserSwActionLock = ['[]', '[:hatena]', '[:book]', '[:vim]', '[:mixi]', '[:log]', '[:hack]']
+"タイトルタグフィルタの正規表現
+" let QFixHowm_TitleFilterReg = '\[:log\]'
+"ウィンドウ分割を基本にしてhowmファイルを開く
+" let QFixHowm_SplitMode = 1
+"全エントリ一覧表示でキャッシュを使用する
+" let QFixHowm_TitleListCache = 1
+let QFixHowm_Template = [
+  \"= %TAG%",
+  \""
+\]
+"デフォルトタグ
+" let QFixHowm_DefaultTag = '[]'
+" ショートカット
+nnoremap <silent> ,t :<C-u>QFixHowmOpenQuickMemo<CR>
+nnoremap <silent> ,m :<C-u>call QFixHowmMru(0)<CR>
+nnoremap <silent> ,<Space> :<C-u>call QFixHowmOpenDiary()<CR>
 
 " quickrun.vim
 silent! nmap <unique> <Space>r <Plug>(Quickrun)
@@ -521,16 +645,17 @@ nmap <unique> <silent> <Space>s <Plug>ShowScratchBuffer
 let g:scratchBackupFile=$HOME . "/tmp/scratch.txt"
 
 " smartchr.vim
-inoremap <expr> = smartchr#loop(' = ', ' == ', ' === ', '=')
-inoremap <expr> < smartchr#loop('<', ' < ', ' <= ')
-inoremap <expr> > smartchr#loop('>', ' > ', ' >= ')
+inoremap <expr> = smartchr#loop('=', ' = ', ' == ', ' === ')
+" inoremap <expr> < smartchr#loop('<', ' < ', ' <= ')
+" inoremap <expr> > smartchr#loop('>', ' > ', ' >= ')
+inoremap <expr> , smartchr#loop(', ', ' < ', ' <= ')
+inoremap <expr> . smartchr#loop('.', '..', '>', ' > ', ' >= ')
 inoremap <expr> & smartchr#loop('&', ' && ')
 inoremap <expr> <Bar> smartchr#loop('<Bar>', ' <Bar><Bar> ')
-inoremap <expr> , smartchr#one_of(', ', ',', '<><Left>')
-inoremap <buffer><expr> + smartchr#one_of('+', ' + ', '++')
-inoremap <buffer><expr> - smartchr#one_of('-', ' - ', '--')
-" inoremap <buffer><expr> + smartchr#one_of(' + ', '++', '+')
-" inoremap <buffer><expr> - smartchr#one_of(' - ', '--', '-')
+" inoremap <buffer><expr> + smartchr#one_of('+', '++', ' + ')
+" inoremap <buffer><expr> - smartchr#one_of('-', '--', ' - ')
+inoremap <buffer><expr> + smartchr#one_of(' + ', '++', '+')
+inoremap <buffer><expr> - smartchr#one_of(' - ', '--', '-')
 
 " smartword.vim
 map w  <Plug>(smartword-w)zz
@@ -702,3 +827,15 @@ if has(! "kaoriya")
     set ambiwidth=double
   endif
 endif
+
+
+" Vimで 保存した UTF-8 なファイルが QuickLook で見られない問題に対処する
+au BufWritePost * call SetUTF8Xattr(expand("<afile>"))
+
+function! SetUTF8Xattr(file)
+	let isutf8 = &fileencoding == "utf-8" || ( &fileencoding == "" && &encoding == "utf-8")
+	if has("unix") && match(system("uname"),'Darwin') != -1
+		call system("xattr -w com.apple.TextEncoding 'utf-8;134217984' '" . a:file . "'")
+	endif
+endfunction
+
