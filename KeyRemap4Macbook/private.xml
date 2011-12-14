@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<root>
+  <list>
+    <item>
+      <name>LeaveInsMode with EISUU</name>
+      <appendix>(Note: Escape is sent when you release Command_L)</appendix>
+      <identifier>private.app_commandLcommandL2escape_eisuu</identifier>
+      <autogen>
+        --KeyOverlaidModifier-- KeyCode::COMMAND_L, ModifierFlag::COMMAND_R, KeyCode::COMMAND_L, 
+        ModifierFlag::COMMAND_R, KeyCode::ESCAPE, KeyCode::JIS_EISUU
+      </autogen>
+    </item>
+    <item>
+      <name>Change Option R to Shift R</name>
+      <identifier>private.optionR2shiftL</identifier>
+      <autogen>--KeyToKey-- KeyCode::OPTION_R, KeyCode::SHIFT_R</autogen>
+    </item>
+  </list>
+</root>
+
