@@ -22,7 +22,7 @@ set guioptions-=R
 set guioptions-=l
 set guioptions-=L
 " ツールバーを非表示
-" set guioptions-=T
+set guioptions-=T
 
 " macvim only
 if has("gui_macvim")

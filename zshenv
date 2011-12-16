@@ -1,4 +1,4 @@
-# my zshenv Last Change: 13-Jun-2011.
+# my zshenv Last Change: 11-Nov-2011.
 
 # プロファイルがあれば読み込む
 # if [ -f /etc/profile ]; then
@@ -18,6 +18,8 @@ fpath=($HOME/.zsh/functions/ $fpath)
 # MacPorts manファイル
 # export MANPATH=/opt/local/man:${MANPATH}
 
+# lessをカラー表示
+export LESSOPEN='| /usr/local/Cellar/source-highlight/3.1.5/bin/src-hilite-lesspipe.sh %s'
 
 # ===============[ tomcat ]=================
 export CATALINA_HOME=/usr/local/tomcat

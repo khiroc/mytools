@@ -23,21 +23,19 @@ setopt prompt_subst
 
 #コマンドの履歴を残す
 HISTFILE=~/.zsh_history
-HISTSIZE=10000000
-SAVEHIST=10000000
+HISTSIZE=12000000
+SAVEHIST=12000000
 
-# 履歴ファイルに時刻を記録
+# ヒストリファイルに時刻を記録
 setopt extended_history
-
-# 履歴をインクリメンタルに追加
+# ヒストリをインクリメンタルに追加
 setopt inc_append_history
-
 # ヒストリに追加されるコマンドが前に使った削除
 setopt hist_ignore_all_dups
-
 # 直前と同じコマンドラインはヒストリに追加しない
 setopt hist_ignore_dups
-
+# 最初に空白がある場合はヒストリに追加しない
+setopt hist_ignore_space
 # ヒストリを呼び出してから実行する間に一旦編集可能
 setopt hist_verify
 
@@ -223,6 +221,9 @@ cist_proxy () {
 
 
 ###alias###
+alias lf="less +F"
+alias less="less -R"
+
 alias l="ls -GF"
 alias ls="ls -GF"
 alias la="ls -lhAGFTv"
@@ -236,8 +237,6 @@ alias rm="rm -ir"
 alias rmf="/bin/rm -frv"
 alias mv="mv -i"
 alias t="tar zxvf"
-
-alias lf="less +F"
 
 alias s="sudo"
 alias ka="killall"
@@ -265,3 +264,10 @@ alias -g H=' --help | less'
 alias -g L='| less'
 alias -g VL='| vless'
 alias -g T='| tail'
+
+alias -g C='| pbcopy'
+
+# alias tmux
+alias tc="tmux new-window"
+alias tn="tmux next-window"
+alias tp="tmux previous-window"

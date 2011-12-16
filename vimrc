@@ -1,4 +1,4 @@
-" my vimrc  Last Change: 09-Sep-2011.
+" my vimrc  Last Change: 16-Dec-2011.
 
 :if version < 701
    :finish
@@ -23,33 +23,41 @@ call vundle#rc()
 " My Bundles here:
 "
 " original repos on github
+Bundle 'fuenor/qfixhowm'
+Bundle 'h1mesuke/unite-outline'
+Bundle 'kana/vim-fakeclip'
+Bundle 'kana/vim-smartword'
+Bundle 'kana/vim-smartchr'
+Bundle 'mattn/zencoding-vim'
+Bundle 'motemen/hatena-vim'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'Shougo/vimproc'
+Bundle 'Shougo/git-vim'
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/neocomplcache'
-Bundle 'ujihisa/quickrun'
-Bundle 'kana/vim-smartchr'
-Bundle 'scrooloose/nerdcommenter'
+Bundle 'Shougo/vimfiler'
+Bundle 'Shougo/vimshell'
+Bundle 'sjl/gundo.vim'
+Bundle 'thinca/vim-ref'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
-Bundle 'Shougo/vimfiler'
-Bundle 'thinca/vim-ref'
-Bundle 'kana/vim-smartword'
-Bundle 'mattn/zencoding-vim'
-Bundle 'tsukkee/unite-help'
-Bundle 'Shougo/vimproc'
-Bundle 'kana/vim-smartword'
-Bundle 'h1mesuke/unite-outline'
-Bundle 'sjl/gundo.vim'
-Bundle 'ujihisa/neco-ghc'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-fugitive'
-Bundle 'Shougo/git-vim'
+Bundle 'tsukkee/unite-help'
 Bundle 'tyru/gittools'
 Bundle 'tyru/open-browser.vim'
+Bundle 'ujihisa/neco-ghc'
+Bundle 'ujihisa/quickrun'
+Bundle 'ujihisa/shadow.vim'
 Bundle 'vimpr/vimperator-plugins'
-Bundle 'fuenor/qfixhowm'
 
 " vim-scripts repos
+Bundle 'ack.vim'
+Bundle 'BufOnly.vim'
+Bundle 'YankRing.vim'
 
+" non github repos
+Bundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
 
 filetype plugin indent on     " required!
 " Brief help
@@ -57,6 +65,7 @@ filetype plugin indent on     " required!
 " :BundleInstall(!)    - install(update) bundles
 " :BundleSearch(!) foo - search(or refresh cache first) for foo
 " :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+" :Bundles(!) foo      - =BundleSearch 
 "
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle command are not allowed..
@@ -90,7 +99,7 @@ set history=500
 " auto indent オートインデントの設定
 set autoindent
 set smartindent
-" set cindent
+set cindent
 " set cinoptions=:0
 
 " set tabindent タブインデントの設定
@@ -99,6 +108,7 @@ set expandtab
 set tabstop=4
 set shiftwidth=2
 set softtabstop=2
+" makefile noexpantab makefileの時はタブをスペースに返還しない
 autocmd MyAutoCmd FileType make setlocal noexpandtab
 
 " break delete バックスペース拡張
@@ -163,10 +173,18 @@ endif
 " colorscheme wombat
 " colorscheme lucius
 " colorscheme elflord
-colorscheme nevfn
+" colorscheme nevfn
+set rtp+=~/mytools/colorscheme/solarized/vim-colors-solarized
+set background=dark
+colorscheme solarized
 
 " syntax_on 構文ハイライト
 syntax on
+
+"vimp syntax
+augroup filetypedetect
+  au! BufRead,BufNewFile .vimperatorrc      setfiletype vimperator
+augroup END
 
 " indent_on ファイル形式別のインデント
 filetype indent on
@@ -191,7 +209,10 @@ set statusline+=[%02p%%]
 
 " display tab & end of line タブ文字行末表示
 set list
-set listchars=tab:»\ \,trail:-,nbsp:%
+" set listchars=tab:»\ \,trail:-,nbsp:%
+set lcs=tab:>-,trail:-,nbsp:%
+
+
 
 " 2byte文字の表示
 set ambiwidth=double
@@ -370,8 +391,13 @@ nnoremap <Space>m :<C-u>marks<CR>
 " file open encoding shortcut 各エンコーディングで開き直すショートカット
 command! -bang -nargs=? Utf8 edit<bang> ++enc=utf-8 <args>
 command! -bang -nargs=? Euc edit<bang> ++enc=euc-jp <args>
+command! -bang -nargs=? Sjis edit<bang> ++enc=cp932 <args>
 " files open shortcut ディレクトリ以下を再帰的にargs
 nnoremap <Space>a :<C-u>args **/*.*
+
+" ab comment コメント略語
+abbreviate #b /****************************************
+abbreviate #e *****************************************/
 
 " vimdiff diff 略語・短縮
 cabbrev dt diffthis
@@ -405,7 +431,10 @@ command! -bar -nargs=? -complete=file CalcFP echo len(filter(readfile(empty(<q-a
 
 " fortune autoupdate
 let $Myfortune_path = $HOME . '/mytools/myfortune/myfortune'
-autocmd MyAutoCmd BufWritePost $Myfortune_path nested !/usr/local/bin/strfile $Myfortune_path
+autocmd MyAutoCmd BufWritePost $Myfortune_path !/usr/local/bin/strfile $Myfortune_path
+
+" tex autoupdate
+" autocmd MyAutoCmd BufWritePost *.tex !/usr/texbin/platex --interaction=nonstopmode % | open -a Skim.app *.dvi
 
 " tips helptags autoupdate
 let $Mydoc_path = $HOME . '/.vim/doc/'
@@ -481,6 +510,9 @@ nnoremap <Space>gp :<C-u>Git push
 " let g:gundo_preview_height = 40
 " let g:gundo_right = 1
 
+"hatena.vim
+let g:hatena_user='k_hiroc'
+
 " Ku.vim
 " enter mapping overwrite
 " autocmd MyAutoCmd User plugin-ku-buffer-initialized call ku#default_key_mappings(1)
@@ -502,6 +534,8 @@ nnoremap <Space>gp :<C-u>Git push
 " neocomplcache.vim
 " Use neocomplcache. neocomplcacheを開始時から有効にする
 let g:neocomplcache_enable_at_startup = 1
+" ユーザー定義スニペット保存ディレクトリ
+let g:neocomplcache_snippets_dir = $HOME.'/.vim/snippets'
 " popup max list ポップアップで表示される候補の最大数
 let g:neocomplcache_max_list = 50
 " hoge -> hoge,Hoge || Hoge -> Hoge
@@ -544,31 +578,33 @@ map ca <plug>NERDCommenteryAppend
 map cu <plug>NERDCommenterUncomment
 let NERDSpaceDelims = 1
 
-" QFixHowm
+" QFixHowm -> QFixMemo
 "qfixappにruntimepathを通す
 if has('win32') || has('win64')
   set runtimepath+=c:/temp/qfixapp
 else
-  set runtimepath+=~/mytools/dot.vim/bundle/qfixapp
+  set runtimepath+=~/mytools/dot.vim/bundle/qfixhowm
 endif
 "howm_dirはファイルを保存したいディレクトリを設定。
 if has('win32') || has('win64')
   let howm_dir             = 'c:/howm'
-  let howm_filename        = '%Y/%m/%Y-%m-%d-%H%M%S.howm'
-  " let howm_filename        = '%Y/%m/%Y-%m-%d-000000.howm'
+  let howm_filename        = '%Y/%m/%Y-%m-%d-%H%M%S.txt'
+  " let howm_filename        = '%Y/%m/%Y-%m-%d-000000.txt'
   let howm_fileencoding    = 'utf-8'
   let howm_fileformat      = 'unix'
 else
   let howm_dir             = '~/howm'
-  let howm_filename        = '%Y/%m/%Y-%m-%d-%H%M%S.howm'
-  " let howm_filename        = '%Y/%m/%Y-%m-%d-000000.howm'
+  let howm_filename        = '%Y/%m/%Y-%m-%d-%H%M%S.txt'
+  " let howm_filename        = '%Y/%m/%Y-%m-%d-000000.txt'
   let howm_fileencoding    = 'utf-8'
   let howm_fileformat      = 'unix'
+  let QFixMRU_Filename     = '~/.qfixmru'
+  " let QFixMRU_RootDir      = ''
 endif
 "クイックメモのファイル名(月ごと)
-" let QFixHowm_QuickMemoFile = 'Qmem-00-%Y-%m-00-000000.howm'
+" let QFixHowm_QuickMemoFile = 'Qmem-00-%Y-%m-00-000000.txt'
 "日記のファイル名
-let QFixHowm_DiaryFile = 'diary/%Y/%m/%Y-%m-%d-000000.howm'
+let QFixHowm_DiaryFile = 'diary/%Y/%m/%Y-%m-%d-000000.txt'
 " grepの設定
 if has('win32') || has('win64')
   let $CYGWIN='nodosfilewarning'
@@ -621,9 +657,13 @@ let QFixHowm_Template = [
 "デフォルトタグ
 " let QFixHowm_DefaultTag = '[]'
 " ショートカット
-nnoremap <silent> ,t :<C-u>QFixHowmOpenQuickMemo<CR>
-nnoremap <silent> ,m :<C-u>call QFixHowmMru(0)<CR>
-nnoremap <silent> ,<Space> :<C-u>call QFixHowmOpenDiary()<CR>
+" nnoremap <silent> ,t :<C-u>QFixMemoOpenQuickMemo<CR>
+nnoremap <silent> ,t :<C-u>call qfixmemo#Quickmemo()<CR>
+" nnoremap <silent> ,m :<C-u>call QFixMemoMru(0)<CR>
+nnoremap <silent> ,m :<C-u>call qfixmemo#ListMru()<CR>
+" nnoremap <silent> ,<Space> :<C-u>call QFixMemoOpenDiary()<CR>
+nnoremap <silent> ,<Space> :<C-u>call qfixmemo#Edit(g:qfixmemo_diary)<CR>
+nnoremap <silent> ,s :<C-u>call qfixmemo#FGrep()<CR>
 
 " quickrun.vim
 silent! nmap <unique> <Space>r <Plug>(Quickrun)
@@ -740,8 +780,22 @@ nnoremap <silent> [unite]f  :<C-u>VimFiler<CR>
 " コマンドラインでの短縮入力
 cabbrev vf VimFiler
 
+" vim-latex
+let g:tex_flavor='latex'
+let g:Tex_DefaultTargetFormat = 'pdf'
+let g:Tex_CompileRule_dvi = 'platex --interaction=nonstopmode $*'
+let g:Tex_CompileRule_pdf = 'dvipdfmx $*.dvi'
+" let g:Tex_CompileRule_pdf = 'pdflatex $*.tex'
+let g:Tex_BibtexFlavor = 'jbibtex'
+let g:Tex_ViewRule_dvi = 'open -a Skim.app'
+let g:Tex_ViewRule_pdf = 'open -a Preview.app'
+" original command
+" autocmd MyAutoCmd FileType tex nnoremap <buffer> <silent> <Space>t :<C-u>!/usr/texbin/platex --interaction=nonstopmode % \| /usr/texbin/platex --interaction=nonstopmode % \| dvipdfmx *.dvi \| open -a Preview.app *.pdf<CR>
+autocmd MyAutoCmd FileType tex nnoremap <buffer> <silent> <Space>t :<C-u>!/usr/texbin/platex --interaction=nonstopmode % \| /usr/texbin/platex --interaction=nonstopmode %<CR>
+autocmd MyAutoCmd FileType tex nnoremap <buffer> <silent> <Space>o :<C-u>!dvipdfmx *.dvi \| open -a Preview.app *.pdf<CR>
+
 " vimshell.vim
-" nnoremap <Space>v :<C-u>VimShell<CR>
+nnoremap <Space>v :<C-u>VimShell<CR>
 " 非同期実行
 " let g:VimShell_EnableInteractive = 1
 " let g:vimshell_enable_smart_case = 1
