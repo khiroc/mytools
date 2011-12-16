@@ -216,9 +216,9 @@ cist_proxy () {
     export ALL_PROXY=$http_proxy
     echo "http_proxy = "$http_proxy
     echo "ftp_proxy = "$ftp_proxy
+    export GIT_PROXY_COMMAND=~/mytools/cogscript/git-proxy.sh
     echo "set cist proxy"
 }
-
 
 ###alias###
 alias lf="less +F"

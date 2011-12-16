@@ -1,4 +1,4 @@
-" my vimrc  Last Change: 16-Dec-2011.
+" my vimrc  Last Change: 23-Dec-2011.
 
 :if version < 701
    :finish
@@ -147,6 +147,9 @@ cnoremap <expr> / getcmdtype() ==  '/' ? '\/' : '/'
 " unused key Nop 使わないキーをNop
 nnoremap ZZ <Nop>
 nnoremap ZQ <Nop>
+
+" use clipboard クリップボードを利用する
+set clipboard=unnamed
 
 " keyremap4macbook patch
 if has('kaoriya')
