@@ -14,61 +14,66 @@ augroup END
 " call pathogen#runtime_append_all_bundles()
 " call pathogen#helptags()
 
-" vundle
-set nocompatible
-filetype off
-set rtp+=~/mytools/dot.vim/vundle.git
-call vundle#rc()
+" NeoBundle
+set nocompatible               " be iMproved
+filetype plugin indent off     " required!
+
+if has('vim_starting')
+   set runtimepath+=~/.vim/bundle/neobundle.vim/
+   call neobundle#rc(expand('~/.vim/bundle/'))
+endif
+
+" let NeoBundle manage NeoBundle
+" required!
+NeoBundle 'Shougo/neobundle.vim'
+
+" first install vimproc
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/unite.vim'
 
 " My Bundles here:
 "
 " original repos on github
-Bundle 'fuenor/qfixhowm'
-Bundle 'h1mesuke/unite-outline'
-Bundle 'kana/vim-fakeclip'
-Bundle 'kana/vim-smartword'
-Bundle 'kana/vim-smartchr'
-Bundle 'mattn/zencoding-vim'
-Bundle 'motemen/hatena-vim'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'Shougo/vimproc'
-Bundle 'Shougo/git-vim'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/vimfiler'
-Bundle 'Shougo/vimshell'
-Bundle 'sjl/gundo.vim'
-Bundle 'thinca/vim-ref'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tsukkee/unite-help'
-Bundle 'tyru/gittools'
-Bundle 'tyru/open-browser.vim'
-Bundle 'ujihisa/neco-ghc'
-Bundle 'ujihisa/quickrun'
-Bundle 'ujihisa/shadow.vim'
-Bundle 'vimpr/vimperator-plugins'
+NeoBundle 'fuenor/qfixhowm'
+NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'kana/vim-fakeclip'
+NeoBundle 'kana/vim-smartword'
+NeoBundle 'kana/vim-smartchr'
+NeoBundle 'mattn/zencoding-vim'
+NeoBundle 'motemen/hatena-vim'
+NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'Shougo/git-vim'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'sjl/gundo.vim'
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tsukkee/unite-help'
+NeoBundle 'tyru/gittools'
+NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'ujihisa/neco-ghc'
+NeoBundle 'ujihisa/quickrun'
+NeoBundle 'ujihisa/shadow.vim'
+NeoBundle 'vimpr/vimperator-plugins'
 
 " vim-scripts repos
-Bundle 'ack.vim'
-Bundle 'BufOnly.vim'
-Bundle 'YankRing.vim'
+NeoBundle 'ack.vim'
+NeoBundle 'BufOnly.vim'
+NeoBundle 'YankRing.vim'
 
 " non github repos
-Bundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
+NeoBundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
 
 filetype plugin indent on     " required!
-" Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
-" :Bundles(!) foo      - =BundleSearch 
 "
-" see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
+" Brief help
+" :NeoBundleList          - list configured bundles
+" :NeoBundleInstall(!)    - install(update) bundles
+" :NeoBundleClean(!)      - confirm(or auto-approve) removal of unused bundles
 
 
 " ---------------------------------------------------------------------

@@ -7,9 +7,6 @@
 [submodule "vimp_plugin/anekos-plugins"]
 	path = vimp_plugin/anekos-plugins
 	url = https://github.com/vimpr/vimperator-plugins.git
-[submodule "dot.vim/vundle.git"]
-	path = dot.vim/vundle.git
-	url = https://github.com/gmarik/vundle.git
 [submodule "colorscheme/solarized"]
 	path = colorscheme/solarized
 	url = https://github.com/altercation/solarized.git
